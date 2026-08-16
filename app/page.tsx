@@ -7,7 +7,7 @@ const starter = 'Help me plan my next coding task.';
 
 export default function Home() {
   const [input, setInput] = useState('');
-  const { messages, sendMessage, status } = useChat();
+  const { messages, sendMessage, status, error } = useChat();
   const busy = status === 'submitted' || status === 'streaming';
   useEffect(() => { localStorage.setItem('ocode-messages', JSON.stringify(messages)); }, [messages]);
 
@@ -23,6 +23,7 @@ export default function Home() {
     <section className="chat">
       <header><div><p className="eyebrow">OCode Web</p><h1>Build from anywhere.</h1></div><span className="status">● Online</span></header>
       <div className="messages">
+        {error && <div className="error">OCode could not reach OpenAI. Add a valid <code>OPENAI_API_KEY</code> in this Vercel project’s Environment Variables, then try again.</div>}
         {!messages.length && <div className="empty"><span>⌘</span><h2>What are we making?</h2><p>Start with an idea, a bug, or a repository task. GitHub projects and safe code execution are the next milestones.</p><button onClick={() => sendMessage({ text: starter })}>{starter}</button></div>}
         {messages.map(message => <article className={message.role} key={message.id}><label>{message.role === 'user' ? 'You' : 'OCode'}</label>{message.parts.map((part, index) => part.type === 'text' ? <p key={index}>{part.text}</p> : null)}</article>)}
       </div>
