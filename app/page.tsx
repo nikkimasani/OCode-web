@@ -18,7 +18,7 @@ export default function Home() {
       <button className="new" onClick={() => window.location.reload()}>+ New conversation</button>
       <section><b>Connected workspace</b><p>GitHub connection is coming next.</p></section>
       <section><b>How it works</b><p>Chat from any device. OCode never accesses a project or runs a command without a future, explicit connection and approval.</p></section>
-      <footer>OCode Web · v0.1</footer>
+      <footer>OCode Web · v0.1 · Created by Nikki</footer>
     </aside>
     <section className="chat">
       <header><div><p className="eyebrow">OCode Web</p><h1>Build from anywhere.</h1></div><span className="status">● Online</span></header>
